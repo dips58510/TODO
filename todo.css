@@ -1,0 +1,60 @@
+body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .todo-container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .todo-item {
+      background: #f8f9fa;
+      padding: 12px 15px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .todo-item:hover {
+      transform: scale(1.02);
+      background: #e9ecef;
+    }
+
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+      opacity: 0.7;
+    }
+
+    .btn-action {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .btn-action:hover {
+      transform: scale(1.2);
+    }
+
+    .filters button {
+      margin: 2px;
+    }

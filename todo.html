@@ -9,68 +9,8 @@
   <!-- Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-  <style>
-    body {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .todo-container {
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      padding: 30px;
-      width: 100%;
-      max-width: 500px;
-      animation: fadeIn 0.8s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-
-    .todo-item {
-      background: #f8f9fa;
-      padding: 12px 15px;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .todo-item:hover {
-      transform: scale(1.02);
-      background: #e9ecef;
-    }
-
-    .completed {
-      text-decoration: line-through;
-      color: gray;
-      opacity: 0.7;
-    }
-
-    .btn-action {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      transition: transform 0.2s ease-in-out;
-    }
-
-    .btn-action:hover {
-      transform: scale(1.2);
-    }
-
-    .filters button {
-      margin: 2px;
-    }
-  </style>
+  <link href="todo.css" rel="stylesheet">
+  <script src="todo.js"></script>
 </head>
 <body>
   <div class="todo-container">
@@ -96,71 +36,6 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-
-    function saveTasks() {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
-
-    function addTask() {
-      const input = document.getElementById("taskInput");
-      const taskText = input.value.trim();
-      if (taskText === "") return;
-
-      tasks.push({ text: taskText, completed: false });
-      saveTasks();
-      input.value = "";
-      renderTasks();
-    }
-
-    function toggleTask(index) {
-      tasks[index].completed = !tasks[index].completed;
-      saveTasks();
-      renderTasks();
-    }
-
-    function deleteTask(index) {
-      tasks.splice(index, 1);
-      saveTasks();
-      renderTasks();
-    }
-
-    function filterTasks(filter) {
-      renderTasks(filter);
-    }
-
-    function renderTasks(filter = "all") {
-      const list = document.getElementById("taskList");
-      list.innerHTML = "";
-
-      tasks.forEach((task, index) => {
-        if (
-          filter === "active" && task.completed ||
-          filter === "completed" && !task.completed
-        ) return;
-
-        const li = document.createElement("li");
-        li.className = `todo-item ${task.completed ? "completed" : ""}`;
-
-        li.innerHTML = `
-          <span onclick="toggleTask(${index})">${task.text}</span>
-          <div>
-            <button class="btn-action text-success" onclick="toggleTask(${index})">
-              <i class="fa ${task.completed ? "fa-rotate-left" : "fa-check"}"></i>
-            </button>
-            <button class="btn-action text-danger" onclick="deleteTask(${index})">
-              <i class="fa fa-trash"></i>
-            </button>
-          </div>
-        `;
-
-        list.appendChild(li);
-      });
-    }
-
-    // Initial render
-    renderTasks();
-  </script>
+  
 </body>
 </html>
